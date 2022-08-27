@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { gql } from '@apollo/client'
 import { useMutation, useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../lib/form'
-import styles from "../styles/AddEmployee.module.css";
+import styles from "../styles/UpdateEmployee.module.css";
 
 const SignInMutation = gql`
   mutation SignInMutation($email: String!, $password: String!) {

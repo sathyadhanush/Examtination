@@ -44,7 +44,9 @@ function Home({ data }) {
                 >
                   Delete
                 </button>
-                <EmployeeEditAction/>
+                <button>
+                 <Link href={`/employee/${empData.emp_id}`}>Update</Link>
+                </button>
               </td>
             </tr>
           ))}
