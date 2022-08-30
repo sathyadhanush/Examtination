@@ -66,10 +66,12 @@ const employeeEdit = ({data}) => {
       kind="Secondary"
       onClick={handleClickOpen}>
         
-          {data.map((empData) => (
-            
+          {data.map((empData,index) => (
+           <div key={index}> 
         <Link href={`/employee/${empData.emp_id}`}>Update</Link>
+        </div>
         ))}
+        
       </button>
       <BootstrapDialog
         onClose={handleClose}

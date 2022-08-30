@@ -12,6 +12,7 @@ function AddEmployee() {
     emp_email: "",
     emp_address: "",
     emp_phone: "",
+    role_id:"",
   });
 
   const onSubmit = async (e) => {
@@ -26,6 +27,7 @@ function AddEmployee() {
       emp_email: "",
       emp_address: "",
       emp_phone: "",
+      role_id:"",
     });
   };
 
@@ -79,6 +81,14 @@ function AddEmployee() {
               placeholder="Enter Phone"
               onChange={handleChange}
               value={addEmployee.emp_phone}
+            />
+              <input
+              type="text"
+              className={styles.input}
+              name="role_id"
+              placeholder="Role Id"
+              onChange={handleChange}
+              value={addEmployee.role_id}
             />
           </div>
           <div>

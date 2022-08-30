@@ -29,10 +29,10 @@ app.get("/employee/:id", async (req, res) => {
 
 app.post("/saveEmployee", async (req, res) => {
   try {
-    const { emp_name, emp_email, emp_address, emp_phone } = req.body;
+    const { emp_name, emp_email, emp_address, emp_phone ,role_id} = req.body;
     let employeeData = await executeQuery(
-      "insert into employee(emp_name,emp_email,emp_address,emp_phone) values(?,?,?,?)",
-      [emp_name, emp_email, emp_address, emp_phone]
+      "insert into employee(emp_name,emp_email,emp_address,emp_phone,role_id) values(?,?,?,?)",
+      [emp_name, emp_email, emp_address, emp_phone,role_id]
     );
     res.status(201).json(employeeData);
   } catch (err) {

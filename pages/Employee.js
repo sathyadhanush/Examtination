@@ -26,6 +26,8 @@ function Home({ data }) {
             <th className={styles.th}>EmployeeEmail</th>
             <th className={styles.th}>EmployeeAddress</th>
             <th className={styles.th}>EmployeePhone</th>
+            <th className={styles.th}>Role </th>
+
             <th className={styles.th}>Actions</th>
           </tr>
         </thead>
@@ -37,6 +39,7 @@ function Home({ data }) {
               <td className={styles.th}>{empData.emp_email}</td>
               <td className={styles.th}>{empData.emp_address}</td>
               <td className={styles.th}>{empData.emp_phone}</td>
+              <td className={styles.th}>{empData.role_id}</td>
               <td className={styles.btn__cols}>
                 <button
                   className={styles.delete}
@@ -44,7 +47,7 @@ function Home({ data }) {
                 >
                   Delete
                 </button>
-                <button>
+                <button className={styles.update}>
                  <Link href={`/employee/${empData.emp_id}`}>Update</Link>
                 </button>
               </td>

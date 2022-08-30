@@ -44,15 +44,15 @@ const deleteEmployeeById = async (req, res, next) => {
 const saveEmployee = async (req, res) => {
   try {
     const result = req.body;
-    const { emp_name, emp_email, emp_address, emp_phone } = result;
+    const { emp_name, emp_email, emp_address, emp_phone ,role_id } = result;
     let { error } = employeeValidation(result);
     if (error) {
       res.status(400).json(error.details[0].message);
     } else {
       console.log("post request");
       let employeeData = await executeQuery(
-        "insert into employee(emp_name,emp_email,emp_address,emp_phone) values(?,?,?,?)",
-        [emp_name, emp_email, emp_address, emp_phone]
+        "insert into employee(emp_name,emp_email,emp_address,emp_phone,role_id) values(?,?,?,?,?)",
+        [emp_name, emp_email, emp_address, emp_phone,role_id]
       );
       employeeData = await executeQuery(
         `select * from employee where emp_id=${employeeData.insertId}`
@@ -67,7 +67,7 @@ const saveEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   let id = req.query.id;
   console.log("id", id);
-  const { emp_name, emp_email, emp_address, emp_phone } = req.body;
+  const { emp_name, emp_email, emp_address, emp_phone ,role_id} = req.body;
   console.log("req.body", req.body);
   try {
     let employeeData = await executeQuery(
@@ -77,8 +77,8 @@ const updateEmployee = async (req, res) => {
     if (employeeData.length > 0) {
       console.log("putrequest", employeeData);
       employeeData = await executeQuery(
-        `update employee set emp_name=?,emp_email=?,emp_address=?,emp_phone=? where emp_id=${id}`,
-        [emp_name, emp_email, emp_address, emp_phone]
+        `update employee set emp_name=?,emp_email=?,emp_address=?,emp_phone=?,role_id=? where emp_id=${id}`,
+        [emp_name, emp_email, emp_address, emp_phone,role_id]
       );
       res.status(200).json(employeeData);
     } else {

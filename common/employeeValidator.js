@@ -6,6 +6,7 @@ const employeeValidation = (data) => {
     emp_email: Joi.string().required(),
     emp_address: Joi.string().required(),
     emp_phone: Joi.string().required(),
+    role_id: Joi.string().required(),
   });
   return employeeSchme.validate(data);
 };
