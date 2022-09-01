@@ -1,20 +1,30 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/AddEmployee.module.css";
-import Link from "next/link";
-import Layout from '../components/Layout'
+import Select from '@material-ui/core/Select';
 
 function AddEmployee() {
   const router = useRouter();
+  const [role_id ,setRole_id] = useState([]);
+  const [roles ,setRoles] = useState([]);
   const [addEmployee, setEmployee] = useState({
     emp_name: "",
     emp_email: "",
     emp_address: "",
     emp_phone: "",
     role_id:"",
+   
   });
 
+ const [opens,setOpens]=useState("");
+  const handleCloses = () => {
+    setOpens(false);
+  };
+
+  const handleOpens = () => {
+    setOpens(true);
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     let data = await axios.post(
@@ -28,6 +38,7 @@ function AddEmployee() {
       emp_address: "",
       emp_phone: "",
       role_id:"",
+      
     });
   };
 
@@ -36,6 +47,12 @@ function AddEmployee() {
     console.log("value", value);
     setEmployee({ ...addEmployee, [e.target.name]: value });
   };
+  useEffect(function(){
+    axios
+    .get("http://localhost:3000/api/employeerole")
+    .then((response) => setRoles(response.data))
+   
+   },[]);
   return (
     <>
    
@@ -81,15 +98,24 @@ function AddEmployee() {
               placeholder="Enter Phone"
               onChange={handleChange}
               value={addEmployee.emp_phone}
-            />
-              <input
-              type="text"
-              className={styles.input}
-              name="role_id"
-              placeholder="Role Id"
-              onChange={handleChange}
-              value={addEmployee.role_id}
-            />
+            /><br/>
+            <label>Roles</label>
+            <br/>
+               <Select
+               className={styles.Select}
+          open={opens}
+          onClose={handleCloses}
+          onOpen={handleOpens}
+          value={role_id} 
+          onChange={(e)=>{setRole_id(e.target.value)}}
+        >
+          {roles.map((role) =>(
+                <option key={role.name} value={role.id}>
+                    {role.name}
+                    
+                </option>
+            ))}
+              </Select>
           </div>
           <div>
           <button type="submit" className={styles.button}>

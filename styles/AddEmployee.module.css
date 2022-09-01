@@ -39,3 +39,12 @@
   font-size: 30px;
   color: rgb(16, 20, 19);
 }
+.Select {
+  font-size: 20px;
+  text-align: left;
+  padding: 10px 10px !important;
+  margin: 10px auto;
+  max-width: 377px;
+  width: 100%;
+  color:#09070c;
+}
