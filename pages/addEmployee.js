@@ -6,8 +6,7 @@ import Select from '@material-ui/core/Select';
 
 function AddEmployee() {
   const router = useRouter();
-  const [role_id ,setRole_id] = useState([]);
-  const [roles ,setRoles] = useState([]);
+   const [roles ,setRoles] = useState([]);
   const [addEmployee, setEmployee] = useState({
     emp_name: "",
     emp_email: "",
@@ -17,14 +16,7 @@ function AddEmployee() {
    
   });
 
- const [opens,setOpens]=useState("");
-  const handleCloses = () => {
-    setOpens(false);
-  };
-
-  const handleOpens = () => {
-    setOpens(true);
-  };
+ 
   const onSubmit = async (e) => {
     e.preventDefault();
     let data = await axios.post(
@@ -101,13 +93,13 @@ function AddEmployee() {
             /><br/>
             <label>Roles</label>
             <br/>
-               <Select
-               className={styles.Select}
-          open={opens}
-          onClose={handleCloses}
-          onOpen={handleOpens}
-          value={role_id} 
-          onChange={(e)=>{setRole_id(e.target.value)}}
+               <select
+                 type="text"
+             
+                 name="role_id"
+                 placeholder="role_id"
+                 onChange={handleChange}
+                 value={addEmployee.role_id}
         >
           {roles.map((role) =>(
                 <option key={role.name} value={role.id}>
@@ -115,7 +107,7 @@ function AddEmployee() {
                     
                 </option>
             ))}
-              </Select>
+              </select>
           </div>
           <div>
           <button type="submit" className={styles.button}>
