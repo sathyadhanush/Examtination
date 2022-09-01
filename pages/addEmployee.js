@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/AddEmployee.module.css";
-import Select from '@material-ui/core/Select';
+
 
 function AddEmployee() {
   const router = useRouter();
@@ -95,7 +95,7 @@ function AddEmployee() {
             <br/>
                <select
                  type="text"
-             
+                 className={styles.input}
                  name="role_id"
                  placeholder="role_id"
                  onChange={handleChange}

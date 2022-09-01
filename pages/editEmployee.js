@@ -7,11 +7,13 @@ import Layout from '../components/Layout'
 function EditEmployee({ employeeUpdateData }) {
   console.log("employeeid", employeeUpdateData);
   const router = useRouter();
+  const [roles ,setRoles] = useState([]);
   const [addEmployee, setEmployee] = useState({
     emp_name: "",
     emp_email: "",
     emp_address: "",
     emp_phone: "",
+    role_id:"",
   });
   useEffect(() => {
     setEmployee(employeeUpdateData[0]);
@@ -28,6 +30,7 @@ function EditEmployee({ employeeUpdateData }) {
       emp_email: "",
       emp_address: "",
       emp_phone: "",
+      role_id:"",
     });
   };
 
@@ -36,6 +39,12 @@ function EditEmployee({ employeeUpdateData }) {
     console.log("value", value);
     setEmployee({ ...addEmployee, [e.target.name]: value });
   };
+  useEffect(function(){
+    axios
+    .get("http://localhost:3000/api/employeerole")
+    .then((response) => setRoles(response.data))
+   
+   },[]);
   return (
     <>
     <Layout>
@@ -82,6 +91,23 @@ function EditEmployee({ employeeUpdateData }) {
               onChange={handleChange}
               value={addEmployee.emp_phone}
             />
+          </div>
+          <div>
+          <select
+              type="text"
+              className={styles.input}
+              name="role_id"
+              placeholder="Role ID"
+              onChange={handleChange}
+              value={addEmployee.role_id}
+            >
+                {roles.map((role) =>(
+                <option key={role.name} value={role.id}>
+                    {role.name}
+                    
+                </option>
+            ))}
+            </select>
           </div>
           <div>
             <button type="submit" className={styles.button}>
