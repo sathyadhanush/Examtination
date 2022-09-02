@@ -9,8 +9,15 @@ function Home({ data }) {
   console.log("data", data);
   const router = useRouter();
   const deleteEmployee = async (id) => {
-    let data = await axios.delete(`http://localhost:3000/api/employee/${id}`);
-    router.push("/Employee");
+   
+    let text = "Delete Employee List ";
+    if (confirm(text) == true) {
+      let data = await axios.delete(`http://localhost:3000/api/employee/${id}`);
+      router.push("/Employee");
+    } else {
+      console.log( "You canceled!")
+    }
+   
   };
   return (
     <div>
@@ -44,8 +51,10 @@ function Home({ data }) {
                 <button
                   className={styles.delete}
                   onClick={() => deleteEmployee(empData.emp_id)}
+                 
                 >
                   Delete
+                
                 </button>
                 <button className={styles.update}>
                  <Link href={`/employee/${empData.emp_id}`}>Update</Link>

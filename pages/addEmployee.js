@@ -102,7 +102,7 @@ function AddEmployee() {
                  value={addEmployee.role_id}
         >
           {roles.map((role) =>(
-                <option key={role.name} value={role.id}>
+                <option key={role.id} value={role.name}>
                     {role.name}
                     
                 </option>

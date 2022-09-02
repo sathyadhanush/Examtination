@@ -102,7 +102,7 @@ function EditEmployee({ employeeUpdateData }) {
               value={addEmployee.role_id}
             >
                 {roles.map((role) =>(
-                <option key={role.name} value={role.id}>
+                <option value={role.name} key={role.id}>
                     {role.name}
                     
                 </option>
