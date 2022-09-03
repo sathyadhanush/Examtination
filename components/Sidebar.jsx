@@ -17,6 +17,7 @@ const menuItems = [
   { id: 1, label: "Admin", icon: ArticleIcon, link: "/Admin" },
   { id: 2, label: "Employee", icon: UsersIcon, link: "/Employee" },
   { id: 3, label: "Customer", icon: VideosIcon, link: "/Customer" },
+  { id: 4, label: "Users", icon: UsersIcon, link: "/Users"},
 ];
 
 const Sidebar = () => {
