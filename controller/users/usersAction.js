@@ -44,15 +44,17 @@ const deleteUsersById = async (req, res, next) => {
 const saveUsers = async (req, res) => {
   try {
     const result = req.body;
+   
     const { lastName, firstName, uuid, Age, user_role_id, email_id, password, phone_no, created } = result;
     let { error } = usersValidation(result);
+  
     if (error) {
       res.status(400).json(error.details[0].message);
     } else {
       console.log("post request");
       let usersData = await executeQuery(
-        "insert into users(lastName,firstName,uuid,Age,user_role_id,email_id,password,phone_no) values(?,?,?,?,?,?,?,?)",
-        [lastName, firstName, uuid, Age, user_role_id, email_id, password, phone_no ]
+        "insert into users(lastName,firstName,uuid,Age,user_role_id,email_id,password,phone_no,created) values(?,?,?,?,?,?,?,?,?)",
+        [lastName, firstName, uuid, parseInt(Age), user_role_id, email_id, password, phone_no,created ]
       );
       usersData = await executeQuery(
         `select * from users where id=${usersData.insertId}`
@@ -67,7 +69,7 @@ const saveUsers = async (req, res) => {
 const updateUsers = async (req, res) => {
   let id = req.query.id;
   console.log("id", id);
-  const { lastName, firstName, uuid, Age, user_role_id, email_id, password, phone_no, created } = req.body;
+  const { lastName, firstName, uuid, Age, user_role_id, email_id, password, phone_no } = req.body;
   console.log("req.body", req.body);
   try {
     let UsersData = await executeQuery(
@@ -76,9 +78,11 @@ const updateUsers = async (req, res) => {
     );
     if (UsersData.length > 0) {
       console.log("putrequest", UsersData);
-      usersData = await executeQuery(
+
+
+      UsersData = await executeQuery(
         `update users set lastName=?,firstName=?,uuid=?,Age=?,user_role_id=?,email_id=?,password=?,phone_no=? where id=${id}`,
-        [lastName, firstName, uuid, Age, user_role_id, email_id, password, phone_no]
+        [lastName, firstName, uuid, parseInt(Age), user_role_id, email_id, password, phone_no]
       );
       res.status(200).json(UsersData);
     } else {

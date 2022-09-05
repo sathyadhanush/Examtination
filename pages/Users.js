@@ -35,7 +35,6 @@ function Home({ data }) {
             <th className={styles.th}>Age </th>
             <th className={styles.th}>User_Role_Id</th>
             <th className={styles.th}>Email_Id </th>
-            <th className={styles.th}>Password </th>
             <th className={styles.th}>Phone_no </th>
             <th className={styles.th}>Created </th>
 
@@ -46,11 +45,15 @@ function Home({ data }) {
           {data.map((usersData, index) => (
             <tr key={index}>
               <th className={styles.th}>{index + 1}</th>
-              <td className={styles.th}>{usersData.last_Name}</td>
+              <td className={styles.th}>{usersData.lastName}</td>
               <td className={styles.th}>{usersData.firstName}</td>
               <td className={styles.th}>{usersData.uuid}</td>
               <td className={styles.th}>{usersData.Age}</td>
               <td className={styles.th}>{usersData.user_role_id}</td>
+              <td className={styles.th}>{usersData.email_id}</td>
+              <td className={styles.th}>{usersData.phone_no}</td>
+              <td className={styles.th}>{usersData.created}</td>
+
               <td className={styles.btn__cols}>
                 <button
                   className={styles.delete}

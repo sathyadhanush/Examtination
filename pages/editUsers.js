@@ -49,7 +49,7 @@ function EditUsers({ usersUpdateData }) {
   };
   useEffect(function(){
     axios
-    .get("http://localhost:3000/api/userrole")
+    .get("http://localhost:3000/api/user_role")
     .then((response) => setRoles(response.data))
    
    },[]);

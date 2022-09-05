@@ -29,10 +29,13 @@ app.get("/users/:id", async (req, res) => {
 
 app.post("/saveUsers", async (req, res) => {
   try {
+    console.log("server1 users insert")
+    req.body.Age=parseInt(req.body.Age)
     const { lastName, firstName, uuid, Age , user_role_id, email_id, password, phone_no, created} = req.body;
+   
     let usersData = await executeQuery(
-      "insert into users(lastName, firstName, uuid, Age , user_role_id, email_id, password, phone_no) values(?,?,?,?,?,?,?,?)",
-      [lastName, firstName, uuid, Age , user_role_id, email_id, password, phone_no]
+      "insert into users(lastName, firstName, uuid, Age , user_role_id, email_id, password, phone_no,created) values(?,?,?,?,?,?,?,?,?)",
+      [lastName, firstName, uuid, Age , user_role_id, email_id, password, phone_no,created]
     );
     res.status(201).json(usersData);
   } catch (err) {

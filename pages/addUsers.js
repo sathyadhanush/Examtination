@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/AddEmployee.module.css";
-
+import moment from 'moment';
 
 function AddUsers() {
   const router = useRouter();
@@ -16,7 +16,7 @@ function AddUsers() {
     email_id:"",
     password: "",
     phone_no: "",
-      
+    created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
   });
 
  
@@ -36,7 +36,7 @@ function AddUsers() {
         email_id:"",
         password: "",
         phone_no: "",
-        
+        created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
     });
   };
 
