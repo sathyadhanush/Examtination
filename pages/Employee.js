@@ -5,6 +5,8 @@ import axios from "axios"
 import Layout from '../components/Layout'
 import Employeeaction from "./employeeAction";
 import EmployeeEditAction from "./employeeEditAction";
+import {Url } from "../constants/Global";
+
 function Home({ data }) {
   console.log("data", data);
   const router = useRouter();
@@ -12,7 +14,7 @@ function Home({ data }) {
    
     let text = "Delete Employee List ";
     if (confirm(text) == true) {
-      let data = await axios.delete(`http://localhost:3000/api/employee/${id}`);
+      let data = await axios.delete(Url +`/api/employee/${id}`);
       router.push("/Employee");
     } else {
       console.log( "You canceled!")
@@ -73,7 +75,7 @@ function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/employee");
+  const res = await fetch(Url +"/api/employee");
   const data = await res.json();
   return {
     props: { data },

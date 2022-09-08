@@ -3,6 +3,7 @@ import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/AddEmployee.module.css";
 import moment from 'moment';
+import {Url } from "../constants/Global"
 
 function AddUsers() {
   const router = useRouter();
@@ -23,7 +24,7 @@ function AddUsers() {
   const onSubmit = async (e) => {
     e.preventDefault();
     let data = await axios.post(
-      `http://localhost:3000/api/users`,
+      Url +`/api/users`,
       addUsers
     );
     if (data.data) router.push("/Users");
@@ -47,7 +48,7 @@ function AddUsers() {
   };
   useEffect(function(){
     axios
-    .get("http://localhost:3000/api/user_role")
+    .get(Url +"/api/user_role")
     .then((response) => setRoles(response.data))
    
    },[]);
