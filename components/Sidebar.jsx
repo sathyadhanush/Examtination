@@ -18,6 +18,11 @@ const menuItems = [
   { id: 2, label: "Employee", icon: UsersIcon, link: "/Employee" },
   { id: 3, label: "Customer", icon: VideosIcon, link: "/Customer" },
   { id: 4, label: "Users", icon: UsersIcon, link: "/Users"},
+  { id: 5, label: "Questions", icon: UsersIcon, link: "/questions"},
+  { id: 6, label: "Answers", icon: UsersIcon, link: "/Answers"},
+  { id: 6, label: "Exams", icon: UsersIcon, link: "/Exams"},
+
+
 ];
 
 const Sidebar = () => {

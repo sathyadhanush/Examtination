@@ -5,13 +5,15 @@ const examsValidation = (data) => {
     name: Joi.string().required(),
     exam_code: Joi.string().required(),
     exam_uuid: Joi.string().required(),
-    noofquestions: Joi.int().required(),
-    timing: Joi.int().required(),
-    is_delete: Joi.bit().required(),
-    is_active: Joi.bit().required(),
-    exam_type_id: Joi.int().required(),
-    iscurrect: Joi.bit().required(),
+    noofquestions: Joi.string().required(),
+    timing: Joi.string().required(),
+    is_delete: Joi.string().required(),
+    is_active: Joi.string().required(),
+    exam_type_id: Joi.string().required(),
+    iscurrect: Joi.string().required(),
+
   });
+  console.log("validation returned")
   return examsSchme.validate(data);
 };
 
