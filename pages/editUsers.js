@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "../styles/UpdateEmployee.module.css";
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
+import {Url } from "../constants/Global";
 function EditUsers({ usersUpdateData }) {
   console.log("usersid", usersUpdateData);
   const router = useRouter();
@@ -25,7 +26,7 @@ function EditUsers({ usersUpdateData }) {
   const onSubmit = async (e) => {
     e.preventDefault();
     let data = await axios.put(
-      `http://localhost:3000/api/users/${usersUpdateData[0].id}`,
+      Url +`/api/users/${usersUpdateData[0].id}`,
       addUsers
     );
     if (data.data) router.push("/Users");
@@ -49,7 +50,7 @@ function EditUsers({ usersUpdateData }) {
   };
   useEffect(function(){
     axios
-    .get("http://localhost:3000/api/user_role")
+    .get(Url +"/api/user_role")
     .then((response) => setRoles(response.data))
    
    },[]);

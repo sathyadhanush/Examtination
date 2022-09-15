@@ -5,6 +5,8 @@ import axios from "axios"
 import Layout from '../components/Layout'
 import Usersaction from "./usersAction";
 import UsersEditAction from "./usersEditAction";
+import {Url } from "../constants/Global"
+
 function Home({ data }) {
   console.log("data", data);
   const router = useRouter();
@@ -12,7 +14,7 @@ function Home({ data }) {
    
     let text = "Delete Users List ";
     if (confirm(text) == true) {
-      let data = await axios.delete(`http://localhost:3000/api/users/${id}`);
+      let data = await axios.delete(Url +`/api/users/${id}`);
       router.push("/Users");
     } else {
       console.log( "You canceled!")
@@ -80,7 +82,7 @@ function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/users");
+  const res = await fetch(Url +"/api/users");
   const data = await res.json();
   return {
     props: { data },

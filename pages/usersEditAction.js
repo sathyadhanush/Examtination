@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import EditEmployee from "./editUsers";
 import styles from "../styles/EmployeeList.module.css";
 import Link from "next/link";
+import {Url } from "../constants/Global";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -100,7 +101,7 @@ const usersEdit = ({data}) => {
   );
 }
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/users");
+  const res = await fetch(Url +"/api/users");
   const data = await res.json();
   return {
     props: { data },
