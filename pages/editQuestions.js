@@ -10,14 +10,11 @@ function EditQuestions({ questionsUpdateData }) {
   const [types ,setTypes] = useState([]);
   const [addQuestions, setQuestions] = useState({
     name: "",
-    image_url: "",
     question_type_id: "",
-    is_delete: "",
-    is_active:"",
-    created:"",
+    answers:"",
   });
   useEffect(() => {
-    setUsers(questionsUpdateData[0]);
+    setQuestions(questionsUpdateData[0]);
   }, [questionsUpdateData]);
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +22,11 @@ function EditQuestions({ questionsUpdateData }) {
       `http://localhost:3000/api/questions/${questionsUpdateData[0].id}`,
       addQuestions
     );
-    if (data.data) router.push("/Questions");
+    if (data.data) router.push("/questions");
     setQuestions({
         name: "",
-        image_url: "",
         question_type_id: "",
-        is_delete: "",
-        is_active:"",
-        created:"",
+        answers:"",
     });
   };
 
@@ -68,42 +62,10 @@ function EditQuestions({ questionsUpdateData }) {
             <input
               type="text"
               className={styles.input}
-              name="image_url"
-              placeholder="Enter image_url"
+              name="answers"
+              placeholder="Enter answer"
               onChange={handleChange}
-              value={addQuestions.image_url}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_delete"
-              placeholder="Enter is_delete"
-              onChange={handleChange}
-              value={addQuestions.is_delete}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_active"
-              placeholder="Enter is_active"
-              onChange={handleChange}
-              value={addQuestions.is_active}
-            />
-          </div>
-         
-         
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="created"
-              placeholder="Enter created"
-              onChange={handleChange}
-              value={addQuestions.created}
+              value={addQuestions.answers}
             />
           <select
               type="text"

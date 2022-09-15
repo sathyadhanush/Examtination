@@ -14,11 +14,10 @@ function AddQuestions() {
    const [types ,setTypes] = useState([]);
   const [addQuestions, setQuestions] = useState({
     name: "",
-    image_url: "",
     question_type_id: "",
     answers:"",
   });
-
+  
  
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +25,9 @@ function AddQuestions() {
       `http://localhost:3000/api/questions`,
       addQuestions
     );
-    if (data.data) router.push("/Questions");
+    if (data.data) router.push("/questions");
     setQuestions({
         name: "",
-        image_url: "",
         question_type_id: "",
         answers:"",
     });
@@ -89,10 +87,10 @@ function AddQuestions() {
             <input
               type="text"
               className={styles.input}
-              name="answer"
+              name="answers"
               placeholder="Enter answer"
               onChange={handleChange}
-              value={addQuestions.answer}
+              value={addQuestions.answers}
             />  
 
           </div>

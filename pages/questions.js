@@ -13,7 +13,7 @@ function Home({ data }) {
     let text = "Delete Questions List ";
     if (confirm(text) == true) {
       let data = await axios.delete(`http://localhost:3000/api/questions/${id}`);
-      router.push("/Questions");
+      router.push("/questions");
     } else {
       console.log( "You canceled!")
     }
@@ -30,11 +30,8 @@ function Home({ data }) {
           <tr>
             <th className={styles.th}>Id</th>
             <th className={styles.th}>Name</th>
-            <th className={styles.th}>Image_Url</th>
             <th className={styles.th}>Question_Type_Id</th>
-            <th className={styles.th}>Is_Delete </th>
-            <th className={styles.th}>Is_Active</th>
-            <th className={styles.th}>Created </th>
+            <th className={styles.th}>Answers </th>
 
             <th className={styles.th}>Actions</th>
           </tr>
@@ -44,11 +41,8 @@ function Home({ data }) {
             <tr key={index}>
               <th className={styles.th}>{index + 1}</th>
               <td className={styles.th}>{questionsData.name}</td>
-              <td className={styles.th}>{questionsData.image_url}</td>
-              <td className={styles.th}>{questionsData.queston_type_id}</td>
-              <td className={styles.th}>{questionsData.is_delete}</td>
-              <td className={styles.th}>{questionsData.is_active}</td>
-              <td className={styles.th}>{questionsData.created}</td>
+              <td className={styles.th}>{questionsData.question_type_id}</td>
+              <td className={styles.th}>{questionsData.answers}</td>
             
               <td className={styles.btn__cols}>
                 <button

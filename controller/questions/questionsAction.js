@@ -45,7 +45,7 @@ const saveQuestions = async (req, res) => {
   try {
     console.log("post request1");
     const result = req.body;
-    const { name, questions_type_id, answers } = result;
+    const { name, question_type_id, answers } = result;
     let { error } = questionsValidation(result);
     if (error) {
              console.log("post request2");
@@ -54,8 +54,8 @@ const saveQuestions = async (req, res) => {
       console.log("post request3");
       console.log("post request");
       let questionsData = await executeQuery(
-        "insert into questions(name, questions_type_id, answers) values(?,?,?)",
-        [name, questions_type_id, answers]
+        "insert into questions(name, question_type_id, answers) values(?,?,?)",
+        [name, question_type_id, answers]
       );
       questionsData = await executeQuery(
         `select * from questions where id=${questionsData.insertId}`
@@ -68,10 +68,11 @@ const saveQuestions = async (req, res) => {
   }
 };
 
+
 const updateQuestions = async (req, res) => {
   let id = req.query.id;
   console.log("id", id);
-  const { name, questions_type_id, answers} = req.body;
+  const { name, question_type_id, answers} = req.body;
   console.log("req.body", req.body);
   try {
     let questionsData = await executeQuery(
@@ -82,7 +83,7 @@ const updateQuestions = async (req, res) => {
       console.log("putrequest", questionsData);
       questionsData = await executeQuery(
         `update questions set name=?,question_type_id=?,answers=? where id=${id}`,
-        [name,  parseInt(questions_type_id), answers]
+        [name, question_type_id, answers]
       );
       res.status(200).json(questionsData);
     } else {

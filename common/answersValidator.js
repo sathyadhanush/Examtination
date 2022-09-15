@@ -3,7 +3,6 @@ import Joi from "joi";
 const answersValidation = (data) => {
   const answersSchme = Joi.object({
     name: Joi.string().required(),
-    image_url: Joi.string().required(),
     question_id: Joi.string().required(),
     iscurrect: Joi.string().required(),
     
