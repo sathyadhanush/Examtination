@@ -11,7 +11,9 @@ function EditQuestions({ questionsUpdateData }) {
   const [addQuestions, setQuestions] = useState({
     name: "",
     question_type_id: "",
-    answers:"",
+    is_delete:"",
+    is_active:"",
+    created: "",
   });
   useEffect(() => {
     setQuestions(questionsUpdateData[0]);
@@ -24,9 +26,11 @@ function EditQuestions({ questionsUpdateData }) {
     );
     if (data.data) router.push("/questions");
     setQuestions({
-        name: "",
-        question_type_id: "",
-        answers:"",
+      name: "",
+      question_type_id: "",
+      is_delete:"",
+      is_active:"",
+      created: "",
     });
   };
 
@@ -62,11 +66,31 @@ function EditQuestions({ questionsUpdateData }) {
             <input
               type="text"
               className={styles.input}
-              name="answers"
-              placeholder="Enter answer"
+              name="is_delete"
+              placeholder="Enter is_delete"
               onChange={handleChange}
-              value={addQuestions.answers}
+              value={addQuestions.is_delete}
             />
+              <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="is_active"
+              placeholder="Enter is_active"
+              onChange={handleChange}
+              value={addQuestions.is_active}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="created"
+              placeholder="Enter created"
+              onChange={handleChange}
+              value={addQuestions.created}
+            />
+          </div>
           <select
               type="text"
               className={styles.input}
@@ -88,7 +112,7 @@ function EditQuestions({ questionsUpdateData }) {
               Submit
             </button>
             <button className={styles.button}>
-              <Link href={`/Questions`}>Go Back</Link>
+              <Link href={`/questions`}>Go Back</Link>
             </button>
           </div>
         </form>

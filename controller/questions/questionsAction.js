@@ -45,7 +45,7 @@ const saveQuestions = async (req, res) => {
   try {
     console.log("post request1");
     const result = req.body;
-    const { name, question_type_id, answers } = result;
+    const { name, question_type_id, is_delete, is_active, created } = result;
     let { error } = questionsValidation(result);
     if (error) {
              console.log("post request2");
@@ -54,13 +54,35 @@ const saveQuestions = async (req, res) => {
       console.log("post request3");
       console.log("post request");
       let questionsData = await executeQuery(
-        "insert into questions(name, question_type_id, answers) values(?,?,?)",
-        [name, question_type_id, answers]
+        "insert into questions(name, question_type_id, is_delete, is_active, created) values(?,?,?,?,?)",
+        [name, question_type_id, is_delete, is_active, created]
       );
-      questionsData = await executeQuery(
-        `select * from questions where id=${questionsData.insertId}`
+      // questionsData = await executeQuery(
+      //   `select * from questions where id=${questionsData.insertId}`
+      // );
+console.log("question_id",questionsData.insertId)
+      // res.status(201).json(questionsData);
+      let answersData1 = await executeQuery(
+        "insert into answers(name1, name2, name3, name4, question_id, iscurrect) values(?,?,?,?,?,?)",
+        ["1", "2", "3", "4", questionsData.insertId, "1"]
       );
-      res.status(201).json(questionsData);
+      let answersData2 = await executeQuery(
+        "insert into answers(name1, name2, name3, name4, question_id, iscurrect) values(?,?,?,?,?,?)",
+        ["1", "2", "3", "4", questionsData.insertId, "1"]
+      );
+      let answersData3 = await executeQuery(
+        "insert into answers(name1, name2, name3, name4, question_id, iscurrect) values(?,?,?,?,?,?)",
+        ["1", "2", "3", "4", questionsData.insertId, "1"]
+      );
+      let answersData4 = await executeQuery(
+        "insert into answers(name1, name2, name3, name4, question_id, iscurrect) values(?,?,?,?,?,?)",
+        ["1", "2", "3", "4", questionsData.insertId, "1"]
+      );
+      
+      answersData = await executeQuery(
+        `select * from answers where id=${answersData.insertId}`
+      );
+      res.status(201).json(answersData);
     }
   } catch (err) {
     console.log("post request4");
@@ -68,11 +90,10 @@ const saveQuestions = async (req, res) => {
   }
 };
 
-
 const updateQuestions = async (req, res) => {
   let id = req.query.id;
   console.log("id", id);
-  const { name, question_type_id, answers} = req.body;
+  const { name, question_type_id, is_delete, is_active, created} = req.body;
   console.log("req.body", req.body);
   try {
     let questionsData = await executeQuery(
@@ -82,8 +103,8 @@ const updateQuestions = async (req, res) => {
     if (questionsData.length > 0) {
       console.log("putrequest", questionsData);
       questionsData = await executeQuery(
-        `update questions set name=?,question_type_id=?,answers=? where id=${id}`,
-        [name, question_type_id, answers]
+        `update questions set name=?,question_type_id=?,is_delete=?,is_active=?,created=? where id=${id}`,
+        [name, question_type_id, is_delete, is_active, created]
       );
       res.status(200).json(questionsData);
     } else {

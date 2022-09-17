@@ -7,8 +7,10 @@ import moment from 'moment';
 function AddAnswers() {
   const router = useRouter();
   const [addAnswers, setAnswers] = useState({
-    name: "",
-    image_url: "",
+    name1: "",
+    name2: "",
+    name3: "",
+    name4: "",
     question_id: "",
     iscurrect: "",
   });
@@ -21,10 +23,12 @@ function AddAnswers() {
     );
     if (data.data) router.push("/Answers");
     setAnswers({
-        name: "",
-        image_url: "",
-        question_id: "",
-        iscurrect: "",
+      name1: "",
+      name2: "",
+      name3: "",
+      name4: "",
+      question_id: "",
+      iscurrect: "",
     });
   };
 
@@ -33,11 +37,9 @@ function AddAnswers() {
     console.log("value", value);
     setAnswers({ ...addAnswers, [e.target.name]: value });
   };
-
+   
   return (
     <>
-   
-    
       <div className={styles.addform}>
         <h1 className={styles.h1}>ADD ANSWERS</h1>
         <form onSubmit={onSubmit}>
@@ -45,20 +47,40 @@ function AddAnswers() {
             <input
               type="text"
               className={styles.input}
-              name="name"
-              placeholder="Enter name"
+              name="name1"
+              placeholder="Enter name1"
               onChange={handleChange}
-              value={addAnswers.name}
+              value={addAnswers.name1}
             />
           </div>
           <div>
             <input
               type="text"
               className={styles.input}
-              name="image_url"
-              placeholder="Enter image_url"
+              name="name2"
+              placeholder="Enter name2"
               onChange={handleChange}
-              value={addAnswers.image_url}
+              value={addAnswers.name2}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="name3"
+              placeholder="Enter name3"
+              onChange={handleChange}
+              value={addAnswers.name3}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="name4"
+              placeholder="Enter name4"
+              onChange={handleChange}
+              value={addAnswers.name4}
             />
           </div>
           <div>

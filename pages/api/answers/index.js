@@ -6,5 +6,5 @@ import {
 } from "../../../controller/answers/answersAction";
 const handler = nc(onError);
 handler.get(getAllAnswers);
-handler.post(getAllAnswers);
+handler.post(saveAnswers);
 export default handler;

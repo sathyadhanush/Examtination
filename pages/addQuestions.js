@@ -15,8 +15,10 @@ function AddQuestions() {
   const [addQuestions, setQuestions] = useState({
     name: "",
     question_type_id: "",
-    answers:"",
-  });
+    is_delete:"",
+    is_active:"",
+    created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
+    });
   
  
   const onSubmit = async (e) => {
@@ -27,10 +29,12 @@ function AddQuestions() {
     );
     if (data.data) router.push("/questions");
     setQuestions({
-        name: "",
-        question_type_id: "",
-        answers:"",
-    });
+      name: "",
+      question_type_id: "",
+      is_delete:"",
+      is_active:"",
+      created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
+        });
   };
 
   const handleChange = (e) => {
@@ -47,7 +51,6 @@ function AddQuestions() {
   return (
     <>
    
-    
       <div className={styles.addform}>
         <h1 className={styles.h1}>ENTER QUESTIONS</h1>
         <form onSubmit={onSubmit}>
@@ -60,7 +63,36 @@ function AddQuestions() {
               onChange={handleChange}
               value={addQuestions.name}
             />
-              
+            <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="is_delete"
+              placeholder="Enter is_delete"
+              onChange={handleChange}
+              value={addQuestions.is_delete}
+            />
+              </div>
+              <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="is_active"
+              placeholder="Enter is_active"
+              onChange={handleChange}
+              value={addQuestions.is_active}
+            />
+              </div>
+              <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="created"
+              placeholder="Enter created"
+              onChange={handleChange}
+              value={addQuestions.created}
+            />
+              </div>
             <br/>
             <label>Types</label>
             <br/>
@@ -80,31 +112,74 @@ function AddQuestions() {
                 </option>
             ))}
               </select>
-              <h1 className={styles.h1}>ANSWERS</h1>
-       
+              <h1 className={styles.h1}>ENTER ANSWERS</h1>
+
+              <FormControl>
+             <FormLabel id="demo-radio-buttons-group-label">Options</FormLabel>
+          <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+               defaultValue="female"
+               name="radio-buttons-group"
+  >
+        </RadioGroup>
+        </FormControl> 
            </div>
            <div>
             <input
               type="text"
               className={styles.input}
-              name="answers"
+              name="answer"
               placeholder="Enter answer"
               onChange={handleChange}
-              value={addQuestions.answers}
+              value={addQuestions.answer}
             />  
-
+             <FormControlLabel value="A" control={<Radio />} label="A" />
           </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="answer"
+              placeholder="Enter answer"
+              onChange={handleChange}
+              value={addQuestions.answer}
+            />  
+             <FormControlLabel value="B" control={<Radio />} label="B" />
+          </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="answer"
+              placeholder="Enter answer"
+              onChange={handleChange}
+              value={addQuestions.answer}
+            />  
+             <FormControlLabel value="C" control={<Radio />} label="C" />
+          </div>
+          <div>
+            <input
+              type="text"
+              className={styles.input}
+              name="answer"
+              placeholder="Enter answer"
+              onChange={handleChange}
+              value={addQuestions.answer}
+            />  
+             <FormControlLabel value="D" control={<Radio />} label="D" />
+          </div>
+          
           <div>
           <button type="submit" className={styles.button}>
               Submit
             </button>
            
           </div>
-        
-        </form>
+          </form>
+
       </div>
-     
     </>
+
   );
 }
 

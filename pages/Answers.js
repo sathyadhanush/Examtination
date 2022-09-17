@@ -29,8 +29,10 @@ function Home({ data }) {
         <thead className={styles.thead}>  
           <tr>
             <th className={styles.th}>Id</th>
-            <th className={styles.th}>Name</th>
-            <th className={styles.th}>Image_Url</th>
+            <th className={styles.th}>Name1</th>
+            <th className={styles.th}>Name2</th>
+            <th className={styles.th}>Name3</th>
+            <th className={styles.th}>Name4</th>
             <th className={styles.th}>Question_Id</th>
             <th className={styles.th}>Iscurrect</th>
 
@@ -41,8 +43,10 @@ function Home({ data }) {
           {data.map((ansData, index) => (
             <tr key={index}>
               <th className={styles.th}>{index + 1}</th>
-              <td className={styles.th}>{ansData.name}</td>
-              <td className={styles.th}>{ansData.image_url}</td>
+              <td className={styles.th}>{ansData.name1}</td>
+              <td className={styles.th}>{ansData.name2}</td>
+              <td className={styles.th}>{ansData.name3}</td>
+              <td className={styles.th}>{ansData.name4}</td>
               <td className={styles.th}>{ansData.question_id}</td>
               <td className={styles.th}>{ansData.iscurrect}</td>
               <td className={styles.btn__cols}>
