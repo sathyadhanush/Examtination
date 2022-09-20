@@ -37,7 +37,7 @@ const Sidebar = () => {
   );
 
   const wrapperClasses = classNames(
-    "h-screen px-4 pt-8 pb-4 bg-light flex justify-between flex-col",
+    "h-screen px-4 pt-8 pb-4 bg-primary flex justify-between flex-col",
     {
       ["w-60"]: !toggleCollapse,
       ["w-20"]: toggleCollapse,
@@ -45,7 +45,7 @@ const Sidebar = () => {
   );
 
   const collapseIconClasses = classNames(
-    "p-4 rounded bg-light-lighter absolute right-0",
+    "p-4 rounded bg-secondary absolute right-0",
     {
       "rotate-180": toggleCollapse,
     }
@@ -110,7 +110,7 @@ const Sidebar = () => {
                     {!toggleCollapse && (
                       <span
                         className={classNames(
-                          "text-md font-medium text-text-light"
+                          "text-md font-medium text-text-secondary"
                         )}
                       >
                         {menu.label}

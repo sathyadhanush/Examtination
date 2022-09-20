@@ -7,10 +7,7 @@ import moment from 'moment';
 function AddAnswers() {
   const router = useRouter();
   const [addAnswers, setAnswers] = useState({
-    name1: "",
-    name2: "",
-    name3: "",
-    name4: "",
+    answers: "",
     question_id: "",
     iscurrect: "",
   });
@@ -23,10 +20,8 @@ function AddAnswers() {
     );
     if (data.data) router.push("/Answers");
     setAnswers({
-      name1: "",
-      name2: "",
-      name3: "",
-      name4: "",
+
+     answers: "",
       question_id: "",
       iscurrect: "",
     });
@@ -47,42 +42,13 @@ function AddAnswers() {
             <input
               type="text"
               className={styles.input}
-              name="name1"
-              placeholder="Enter name1"
+              name="answers"
+              placeholder="Enter answers"
               onChange={handleChange}
-              value={addAnswers.name1}
+              value={addAnswers.answers}
             />
           </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="name2"
-              placeholder="Enter name2"
-              onChange={handleChange}
-              value={addAnswers.name2}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="name3"
-              placeholder="Enter name3"
-              onChange={handleChange}
-              value={addAnswers.name3}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="name4"
-              placeholder="Enter name4"
-              onChange={handleChange}
-              value={addAnswers.name4}
-            />
-          </div>
+          
           <div>
             <input
               type="text"

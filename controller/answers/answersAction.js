@@ -45,7 +45,7 @@ const saveAnswers = async (req, res) => {
   try {
     const result = req.body;
    
-    const { name1, name2, name3, name4, question_id, iscurrect } = result;
+    const { answers, question_id, iscurrect } = result;
     let { error } = answersValidation(result);
   
     if (error) {
@@ -53,8 +53,8 @@ const saveAnswers = async (req, res) => {
     } else {
       console.log("post request");
       let answersData = await executeQuery(
-        "insert into answers(name1, name2, name3, name4, question_id, iscurrect) values(?,?,?,?,?,?)",
-        [name1, name2, name3, name4, question_id, iscurrect]
+        "insert into answers(answers, question_id, iscurrect) values(?,?,?)",
+        [answers, question_id, iscurrect]
       );
       answersData = await executeQuery(
         `select * from answers where id=${answersData.insertId}`
@@ -69,7 +69,7 @@ const saveAnswers = async (req, res) => {
 const updateAnswers = async (req, res) => {
   let id = req.query.id;
   console.log("id", id);
-  const { name1, name2, name3, name4, question_id, iscurrect } = req.body;
+  const { answers, question_id, iscurrect } = req.body;
   console.log("req.body", req.body);
   try {
     let answersData = await executeQuery(
@@ -81,8 +81,8 @@ const updateAnswers = async (req, res) => {
 
 
       answersData = await executeQuery(
-        `update answers set name1=?,name2=?,name3=?,name4=?,question_id=?,iscurrect=? where id=${id}`,
-        [ name1, name2, name3, name4, question_id, iscurrect]
+        `update answers set answers=?,question_id=?,iscurrect=? where id=${id}`,
+        [ answers, question_id, iscurrect]
       );
       res.status(200).json(answersData);
     } else {

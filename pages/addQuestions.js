@@ -3,11 +3,8 @@ import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/AddEmployee.module.css";
 import moment from 'moment';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import { Radio } from '@nextui-org/react';
+
 
 function AddQuestions() {
   const router = useRouter();
@@ -18,7 +15,9 @@ function AddQuestions() {
     is_delete:"",
     is_active:"",
     created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
-    });
+    answers:"",
+ 
+ });
   
  
   const onSubmit = async (e) => {
@@ -34,6 +33,8 @@ function AddQuestions() {
       is_delete:"",
       is_active:"",
       created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
+      answers:"",
+     
         });
   };
 
@@ -55,46 +56,7 @@ function AddQuestions() {
         <h1 className={styles.h1}>ENTER QUESTIONS</h1>
         <form onSubmit={onSubmit}>
           <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="name"
-              placeholder="Enter Name"
-              onChange={handleChange}
-              value={addQuestions.name}
-            />
-            <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_delete"
-              placeholder="Enter is_delete"
-              onChange={handleChange}
-              value={addQuestions.is_delete}
-            />
-              </div>
-              <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_active"
-              placeholder="Enter is_active"
-              onChange={handleChange}
-              value={addQuestions.is_active}
-            />
-              </div>
-              <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="created"
-              placeholder="Enter created"
-              onChange={handleChange}
-              value={addQuestions.created}
-            />
-              </div>
-            <br/>
-            <label>Types</label>
+          <label>Types</label>
             <br/>
            
                <select
@@ -112,62 +74,50 @@ function AddQuestions() {
                 </option>
             ))}
               </select>
+            <input
+              type="text"
+              className={styles.input}
+              name="name"
+              placeholder="Enter Name"
+              onChange={handleChange}
+              value={addQuestions.name}
+            />
+            <input
+              type="text"
+              className={styles.input}
+              name="is_delete"
+              placeholder="delete"
+              onChange={handleChange}
+              value={addQuestions.is_delete}
+            />
+              <input
+              type="text"
+              className={styles.input}
+              name="is_active"
+              placeholder="active"
+              onChange={handleChange}
+              value={addQuestions.is_active}
+            />
+           
+           
+            <br/>
+            
               <h1 className={styles.h1}>ENTER ANSWERS</h1>
 
-              <FormControl>
-             <FormLabel id="demo-radio-buttons-group-label">Options</FormLabel>
-          <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-               defaultValue="female"
-               name="radio-buttons-group"
-  >
-        </RadioGroup>
-        </FormControl> 
+              
            </div>
-           <div>
-            <input
+           <Radio.Group label="Options" defaultValue="A">
+      <Radio value="A"> <input
               type="text"
               className={styles.input}
-              name="answer"
-              placeholder="Enter answer"
+              name="answers"
+              placeholder="Enter answers"
               onChange={handleChange}
-              value={addQuestions.answer}
-            />  
-             <FormControlLabel value="A" control={<Radio />} label="A" />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="answer"
-              placeholder="Enter answer"
-              onChange={handleChange}
-              value={addQuestions.answer}
-            />  
-             <FormControlLabel value="B" control={<Radio />} label="B" />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="answer"
-              placeholder="Enter answer"
-              onChange={handleChange}
-              value={addQuestions.answer}
-            />  
-             <FormControlLabel value="C" control={<Radio />} label="C" />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="answer"
-              placeholder="Enter answer"
-              onChange={handleChange}
-              value={addQuestions.answer}
-            />  
-             <FormControlLabel value="D" control={<Radio />} label="D" />
-          </div>
+              value={addQuestions.answers}
+            /></Radio>
+      
+    </Radio.Group>
+          
           
           <div>
           <button type="submit" className={styles.button}>

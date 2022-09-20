@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "../styles/UpdateEmployee.module.css";
 import Layout from '../components/Layout'
+import { Radio } from '@nextui-org/react';
+
 function EditQuestions({ questionsUpdateData }) {
   console.log("questionsid", questionsUpdateData);
   const router = useRouter();
@@ -14,6 +16,8 @@ function EditQuestions({ questionsUpdateData }) {
     is_delete:"",
     is_active:"",
     created: "",
+    answers:"",
+
   });
   useEffect(() => {
     setQuestions(questionsUpdateData[0]);
@@ -31,6 +35,8 @@ function EditQuestions({ questionsUpdateData }) {
       is_delete:"",
       is_active:"",
       created: "",
+      answers:"",
+
     });
   };
 
@@ -53,44 +59,6 @@ function EditQuestions({ questionsUpdateData }) {
         <h1 className={styles.h1}>EDIT QUESTIONS</h1>
         <form onSubmit={onSubmit}>
           <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="name"
-              placeholder="Enter Name"
-              onChange={handleChange}
-              value={addQuestions.name}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_delete"
-              placeholder="Enter is_delete"
-              onChange={handleChange}
-              value={addQuestions.is_delete}
-            />
-              <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="is_active"
-              placeholder="Enter is_active"
-              onChange={handleChange}
-              value={addQuestions.is_active}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className={styles.input}
-              name="created"
-              placeholder="Enter created"
-              onChange={handleChange}
-              value={addQuestions.created}
-            />
-          </div>
           <select
               type="text"
               className={styles.input}
@@ -106,7 +74,30 @@ function EditQuestions({ questionsUpdateData }) {
                 </option>
             ))}
             </select>
+            <input
+              type="text"
+              className={styles.input}
+              name="name"
+              placeholder="Enter Name"
+              onChange={handleChange}
+              value={addQuestions.name}
+            />
           </div>
+          <div>
+          <h1 className={styles.h1}>EDIT ANSWERS</h1>
+          <Radio.Group label="Options" defaultValue="A">
+          <Radio value="A"> <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           onChange={handleChange}
+           value={addQuestions.answers}
+           /></Radio>
+      
+           </Radio.Group>       
+           </div>
+          
           <div>
             <button type="submit" className={styles.button}>
               Submit
