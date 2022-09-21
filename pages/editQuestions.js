@@ -16,7 +16,7 @@ function EditQuestions({ questionsUpdateData }) {
     is_delete:"",
     is_active:"",
     created: "",
-    answers:"",
+    answers: "",  
 
   });
   useEffect(() => {
@@ -35,7 +35,7 @@ function EditQuestions({ questionsUpdateData }) {
       is_delete:"",
       is_active:"",
       created: "",
-      answers:"",
+      answers: "",
 
     });
   };
@@ -94,6 +94,31 @@ function EditQuestions({ questionsUpdateData }) {
            onChange={handleChange}
            value={addQuestions.answers}
            /></Radio>
+             <Radio value="B" > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      <Radio value="C" > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      <Radio value="D" > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      
       
            </Radio.Group>       
            </div>

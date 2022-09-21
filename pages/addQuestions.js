@@ -66,7 +66,7 @@ function AddQuestions() {
                  placeholder="question_type_id"
                  onChange={handleChange}
                  value={addQuestions.question_type_id}
-        >
+                 >
           {types.map((type) =>(
                 <option key={type.id} value={type.name}>
                     {type.name}
@@ -106,17 +106,41 @@ function AddQuestions() {
 
               
            </div>
-           <Radio.Group label="Options" defaultValue="A">
-      <Radio value="A"> <input
-              type="text"
-              className={styles.input}
-              name="answers"
-              placeholder="Enter answers"
-              onChange={handleChange}
-              value={addQuestions.answers}
-            /></Radio>
+           <Radio.Group label="Options" >
+          <Radio  value={addQuestions.answers}> <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      <Radio value={addQuestions.answers} > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      <Radio value={addQuestions.answers} > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
+      <Radio value={addQuestions.answers} > <input
+           type="text"
+           className={styles.input}
+           name="answers"
+           placeholder="Enter answers"
+           value={addQuestions.answers}
+           onChange={handleChange}
+           /></Radio>
       
-    </Radio.Group>
+           </Radio.Group>       
           
           
           <div>
