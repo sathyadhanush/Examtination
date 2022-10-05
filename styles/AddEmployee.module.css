@@ -1,7 +1,7 @@
 .addform {
   margin: px auto;
-  width: 500px;
-  text-align: center;
+  width: 482px;
+  text-align: right;
   background: rgb(154, 189, 241);
   box-shadow: 0 8px 8px -4px #673ab7;
   padding: 37px;
@@ -11,9 +11,10 @@
   text-align: left;
   padding: 10px 10px !important;
   margin: 10px auto;
-  max-width: 300px;
+  max-width: 235px;
   width: 100%;
   color:#09070c;
+  
 }
 .addform button { 
   background-color: #673ab7;
@@ -42,9 +43,21 @@
 .Select {
   font-size: 20px;
   text-align: left;
-  padding: 10px 10px !important;
+  padding: 1px 10px !important;
   margin: 10px auto;
-  max-width: 377px;
+  max-width: 370px;
   width: 100%;
   color:#09070c;
+}
+
+.select-dropdown select {
+  font-size: 1rem;
+  font-weight: normal;
+  max-width: 100%;
+  padding: 8px 24px 8px 10px;
+  border: none;
+  background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  appearance: none;
 }

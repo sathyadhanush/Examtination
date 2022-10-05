@@ -15,13 +15,18 @@ function AddQuestions() {
     is_delete:"",
     is_active:"",
     created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
-    answers:"",
+    answers1:"",
+    answers2:"",
+    answers3:"",
+    answers4:"",
+
  
  });
   
  
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(addQuestions);
     let data = await axios.post(
       `http://localhost:3000/api/questions`,
       addQuestions
@@ -33,11 +38,22 @@ function AddQuestions() {
       is_delete:"",
       is_active:"",
       created: moment().format( 'YYYY-MM-DD HH:mm:ss'),
-      answers:"",
+    
+      answers1:"",
+      answers2:"",
+      answers3:"",
+      answers4:"",
+      currectans:""
      
         });
   };
+  
 
+  const correctanswerhandleChange = (e) => {
+    const value = e;
+    console.log("value", value);
+    setQuestions({ ...addQuestions, 'currectans': value });
+  };
   const handleChange = (e) => {
     const value = e.target.value;
     console.log("value", value);
@@ -82,63 +98,50 @@ function AddQuestions() {
               onChange={handleChange}
               value={addQuestions.name}
             />
-            <input
-              type="text"
-              className={styles.input}
-              name="is_delete"
-              placeholder="delete"
-              onChange={handleChange}
-              value={addQuestions.is_delete}
-            />
-              <input
-              type="text"
-              className={styles.input}
-              name="is_active"
-              placeholder="active"
-              onChange={handleChange}
-              value={addQuestions.is_active}
-            />
-           
-           
+            
             <br/>
             
               <h1 className={styles.h1}>ENTER ANSWERS</h1>
 
               
            </div>
-           <Radio.Group label="Options" defaultValue="A">
-          <Radio value="A"> <input
+           <Radio.Group onChange={correctanswerhandleChange}  name="correctanswer" label="Options" defaultValue="1">
+          <Radio value="1"> <input
            type="text"
            className={styles.input}
-           name="answers"
+           name="answers1"
            placeholder="Enter answers"
            onChange={handleChange}
-           value={addQuestions.answers}
+           value={addQuestions.answers1}
            /></Radio>
-             <Radio value="B" > <input
+
+             <Radio value="2" > <input
            type="text"
            className={styles.input}
-           name="answers"
+           name="answers2"
            placeholder="Enter answers"
-           value={addQuestions.answers}
+           value={addQuestions.answers2}
            onChange={handleChange}
            /></Radio>
-      <Radio value="C" > <input
+
+      <Radio value="3" > <input
            type="text"
            className={styles.input}
-           name="answers"
+           name="answers3"
            placeholder="Enter answers"
-           value={addQuestions.answers}
+           value={addQuestions.answers3}
            onChange={handleChange}
            /></Radio>
-      <Radio value="D" > <input
+
+      <Radio value="4" > <input
            type="text"
            className={styles.input}
-           name="answers"
+           name="answers4"
            placeholder="Enter answers"
-           value={addQuestions.answers}
+           value={addQuestions.answers4}
            onChange={handleChange}
            /></Radio>
+
            </Radio.Group>     
           
           

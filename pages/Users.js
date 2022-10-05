@@ -1,23 +1,21 @@
-
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/EmployeeList.module.css";
 import axios from "axios"
 import Layout from '../components/Layout'
-import Questionsaction from "./questionsAction";
-import QuestionsEditAction from "./questionsEditAction";
+import Usersaction from "./usersAction";
+import UsersEditAction from "./usersEditAction";
 import {Url } from "../constants/Global"
 
 function Home({ data }) {
   console.log("data", data);
   const router = useRouter();
-  const deleteQuestions = async (id) => {
+  const deleteUsers = async (id) => {
    
-    let text = "Delete Quetions List ";
+    let text = "Delete Users List ";
     if (confirm(text) == true) {
-      let data = await axios.delete(Url +`/api/questions/${id}`);
-      router.push("/questions");
+      let data = await axios.delete(Url +`/api/users/${id}`);
+      router.push("/Users");
     } else {
       console.log( "You canceled!")
     }
@@ -26,48 +24,56 @@ function Home({ data }) {
   return (
     <div>
        <Layout>
-       <label className={styles.label}>QUESTIONS</label>
+       <label className={styles.label}>USERS</label>
     <div className={styles.cols}>
     
       <table className={styles.table}>
         <thead className={styles.thead}>  
           <tr>
             <th className={styles.th}>Id</th>
-            <th className={styles.th}>Name</th>
-            <th className={styles.th}>Question_Type_Id</th>
-       
+            <th className={styles.th}>LastName</th>
+            <th className={styles.th}>FirstName</th>
+            <th className={styles.th}>Uuid</th>
+            <th className={styles.th}>Age </th>
+            <th className={styles.th}>User_Role_Id</th>
+            <th className={styles.th}>Email_Id </th>
+            <th className={styles.th}>Phone_no </th>
             <th className={styles.th}>Created </th>
 
             <th className={styles.th}>Actions</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
-          {data.map((questionsData, index) => (
+          {data.map((usersData, index) => (
             <tr key={index}>
               <th className={styles.th}>{index + 1}</th>
-              <td className={styles.th}>{questionsData.name}</td>
-              <td className={styles.th}>{questionsData.question_type_id}</td>
-             
-              <td className={styles.th}>{questionsData.created}</td>
+              <td className={styles.th}>{usersData.lastName}</td>
+              <td className={styles.th}>{usersData.firstName}</td>
+              <td className={styles.th}>{usersData.uuid}</td>
+              <td className={styles.th}>{usersData.Age}</td>
+              <td className={styles.th}>{usersData.user_role_id}</td>
+              <td className={styles.th}>{usersData.email_id}</td>
+              <td className={styles.th}>{usersData.phone_no}</td>
+              <td className={styles.th}>{usersData.created}</td>
 
               <td className={styles.btn__cols}>
                 <button
                   className={styles.delete}
-                  onClick={() => deleteQuestions(questionsData.id)}
+                  onClick={() => deleteUsers(usersData.id)}
                  
                 >
                   Delete
                 
                 </button>
                 <button className={styles.update}>
-                 <Link href={`/questions/${questionsData.id}`}>Update</Link>
+                 <Link href={`/users/${usersData.id}`}>Update</Link>
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <center><Questionsaction/></center>
+      <center><Usersaction/></center>
      
     </div>
     </Layout>
@@ -76,7 +82,7 @@ function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(Url +"/api/questions");
+  const res = await fetch(Url +"/api/users");
   const data = await res.json();
   return {
     props: { data },

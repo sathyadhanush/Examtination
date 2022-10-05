@@ -1,17 +1,17 @@
 .addform {
   margin: 50px auto;
-  width: 800px;
-  text-align: center;
+  width: 700px;
+  text-align: right;
   background: rgb(154, 189, 241);
   box-shadow: 0 8px 8px -4px #673ab7;
   padding: 37px;
 }
 .input {
   font-size: 20px;
-  text-align: left;
+  text-align: center;
   padding: 10px 10px !important;
   margin: 10px auto;
-  max-width: 377px;
+  max-width: 400px;
   width: 100%;
   color: #09070c;
 }

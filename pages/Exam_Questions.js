@@ -5,19 +5,17 @@ import { useRouter } from "next/router";
 import styles from "../styles/EmployeeList.module.css";
 import axios from "axios"
 import Layout from '../components/Layout'
-import Questionsaction from "./questionsAction";
-import QuestionsEditAction from "./questionsEditAction";
-import {Url } from "../constants/Global"
-
+import Exam_Questionsaction from "./exam_questionsAction";
+import Exam_QuestionsEditAction from "./exam_questionsAction";
 function Home({ data }) {
   console.log("data", data);
   const router = useRouter();
-  const deleteQuestions = async (id) => {
+  const deleteExamQuestions = async (id) => {
    
-    let text = "Delete Quetions List ";
+    let text = "Delete Exam_Questions List ";
     if (confirm(text) == true) {
-      let data = await axios.delete(Url +`/api/questions/${id}`);
-      router.push("/questions");
+      let data = await axios.delete(`http://localhost:3000/api/exam_questions/${id}`);
+      router.push("/Exam_Questions");
     } else {
       console.log( "You canceled!")
     }
@@ -26,48 +24,44 @@ function Home({ data }) {
   return (
     <div>
        <Layout>
-       <label className={styles.label}>QUESTIONS</label>
+       <label className={styles.label}>EXAM_QUESTIONS</label>
     <div className={styles.cols}>
     
       <table className={styles.table}>
         <thead className={styles.thead}>  
           <tr>
             <th className={styles.th}>Id</th>
-            <th className={styles.th}>Name</th>
-            <th className={styles.th}>Question_Type_Id</th>
-       
-            <th className={styles.th}>Created </th>
+            <th className={styles.th}>Exam_Id</th>
+            <th className={styles.th}>Question_Id</th>
 
             <th className={styles.th}>Actions</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
-          {data.map((questionsData, index) => (
+          {data.map((examQuesData, index) => (
             <tr key={index}>
               <th className={styles.th}>{index + 1}</th>
-              <td className={styles.th}>{questionsData.name}</td>
-              <td className={styles.th}>{questionsData.question_type_id}</td>
              
-              <td className={styles.th}>{questionsData.created}</td>
-
+              <td className={styles.th}>{examQuesData.exam_id}</td>
+              <td className={styles.th}>{examQuesData.question_id}</td>
               <td className={styles.btn__cols}>
                 <button
                   className={styles.delete}
-                  onClick={() => deleteQuestions(questionsData.id)}
+                  onClick={() => deleteExamQuestions(examQuesData.id)}
                  
                 >
                   Delete
                 
                 </button>
                 <button className={styles.update}>
-                 <Link href={`/questions/${questionsData.id}`}>Update</Link>
+                 <Link href={`/exam_questions/${examQuesData.id}`}>Update</Link>
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <center><Questionsaction/></center>
+      <center><Exam_Questionsaction/></center>
      
     </div>
     </Layout>
@@ -76,7 +70,7 @@ function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(Url +"/api/questions");
+  const res = await fetch("http://localhost:3000/api/exam_questions");
   const data = await res.json();
   return {
     props: { data },

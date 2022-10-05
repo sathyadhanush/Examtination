@@ -17,8 +17,12 @@ const menuItems = [
  
   { id: 1, label: "Questions", icon: UsersIcon, link: "/questions"},
   { id: 2, label: "Answers", icon: UsersIcon, link: "/Answers"},
+  { id: 3, label: "Employee", icon: UsersIcon, link: "/Employee"},
+  { id: 4, label: "Exams", icon: UsersIcon, link: "/Exams"},
+  { id: 5, label: "Users", icon: UsersIcon, link: "/Users"},
+  { id: 6, label: "Exam_Questions", icon: UsersIcon, link: "/Exam_Questions"},
 
-
+  
 ];
 
 const Sidebar = () => {
